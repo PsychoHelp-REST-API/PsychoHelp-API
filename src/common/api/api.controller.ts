@@ -3,13 +3,14 @@ import { HttpStatus } from '@nestjs/common';
 import { Envelope } from './envelope';
 import { AppError } from '../application/app.error';
 
-
 export class ApiController {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   static ok(response: Response, result: object): Envelope {
     response.status(HttpStatus.OK);
     return Envelope.ok(result);
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   static created(response: Response, result: object): Envelope {
     response.status(HttpStatus.CREATED);
     return Envelope.ok(result);
