@@ -8,6 +8,10 @@ export class Email {
     this.value = value;
   }
 
+  public getValue(): string {
+    return this.value;
+  }
+
   public static create(email: string): Result<AppNotification, Email>
   {
     let notification: AppNotification = new AppNotification();
