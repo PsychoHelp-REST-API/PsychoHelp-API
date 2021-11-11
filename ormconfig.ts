@@ -20,7 +20,8 @@ function getEntityDirectory() {
 }
 
 function getMigrationDirectory() {
-  let path = 'dist/src/common/infrastructure/persistence/typeorm/migrations/*.js';
+  let path =
+    'dist/src/common/infrastructure/persistence/typeorm/migrations/*.js';
   if (process.env.NODE_ENV === 'migration') {
     path = 'src/common/infrastructure/persistence/typeorm/migrations/*.ts';
   }
