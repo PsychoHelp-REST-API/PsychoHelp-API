@@ -1,8 +1,8 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Name } from '../../../common/domain/value-objects/name.value';
 import { Email } from '../../../common/domain/value-objects/email.value';
-import { Dni } from '../../../psychologists/domain/value-objects/dni.value';
-import { Password } from '../../../psychologists/domain/value-objects/password.value';
+import { Dni } from '../../../common/domain/value-objects/dni.value';
+import { Password } from '../../../common/domain/value-objects/password.value';
 import { PatientId } from '../value-objects/patient-id.value';
 import { PatientRegisteredEvent } from '../events/patient-registered.event';
 

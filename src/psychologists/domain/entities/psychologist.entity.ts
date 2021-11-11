@@ -2,9 +2,9 @@ import { AggregateRoot } from '@nestjs/cqrs';
 import { PsychologistId } from '../value-objects/psychologist-id.value';
 import { Name } from '../../../common/domain/value-objects/name.value';
 import { Email } from '../../../common/domain/value-objects/email.value';
-import { Dni } from '../value-objects/dni.value';
+import { Dni } from '../../../common/domain/value-objects/dni.value';
 import { Description } from '../value-objects/description.value';
-import { Password } from '../value-objects/password.value';
+import { Password } from '../../../common/domain/value-objects/password.value';
 import { PsychologistRegisteredEvent } from '../events/psychologist-registered.event';
 
 export class Psychologist extends AggregateRoot {

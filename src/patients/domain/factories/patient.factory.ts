@@ -1,8 +1,8 @@
 import { Patient } from '../entities/patient.entity';
 import { Name } from '../../../common/domain/value-objects/name.value';
-import { Dni } from '../../../psychologists/domain/value-objects/dni.value';
+import { Dni } from '../../../common/domain/value-objects/dni.value';
 import { Email } from '../../../common/domain/value-objects/email.value';
-import { Password } from '../../../psychologists/domain/value-objects/password.value';
+import { Password } from '../../../common/domain/value-objects/password.value';
 import { PatientId } from '../value-objects/patient-id.value';
 
 export class PatientFactory {
