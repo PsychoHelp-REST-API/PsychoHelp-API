@@ -4,7 +4,7 @@ import { AppNotification } from '../../application/app.notification';
 export class Name {
   private readonly firstName: string;
   private readonly lastName: string;
-  private static MAX_LENGTH: number = 75;
+  private static MAX_LENGTH = 75;
 
   private constructor(firstName: string, lastName: string) {
     this.firstName = firstName;
@@ -19,21 +19,34 @@ export class Name {
     return this.lastName;
   }
 
-  public static create(firstName: string, lastName: string): Result<AppNotification, Name> {
-    let notification: AppNotification = new AppNotification();
-    firstName = (firstName ?? "").trim();
-    lastName = (lastName ?? "").trim();
-    if (firstName === "") {
+  public static create(
+    firstName: string,
+    lastName: string,
+  ): Result<AppNotification, Name> {
+    const notification: AppNotification = new AppNotification();
+    firstName = (firstName ?? '').trim();
+    lastName = (lastName ?? '').trim();
+    if (firstName === '') {
       notification.addError('firstName is required', null);
     }
-    if (lastName === "") {
+    if (lastName === '') {
       notification.addError('lastName is required', null);
     }
     if (firstName.length > this.MAX_LENGTH) {
-      notification.addError('The maximum length of an firstName is ' + this.MAX_LENGTH + ' characters including spaces', null);
+      notification.addError(
+        'The maximum length of an firstName is ' +
+          this.MAX_LENGTH +
+          ' characters including spaces',
+        null,
+      );
     }
     if (lastName.length > this.MAX_LENGTH) {
-      notification.addError('The maximum length of an lastName is ' + this.MAX_LENGTH + ' characters including spaces', null);
+      notification.addError(
+        'The maximum length of an lastName is ' +
+          this.MAX_LENGTH +
+          ' characters including spaces',
+        null,
+      );
     }
     if (notification.hasErrors()) {
       return Result.error(notification);
