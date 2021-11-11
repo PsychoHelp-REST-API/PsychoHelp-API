@@ -16,7 +16,7 @@ export class Description {
     let notification: AppNotification = new AppNotification();
     value = (value ?? '').trim();
     if (value === '') {
-      notification.addError('companyName is required', null);
+      notification.addError('description is required', null);
     }
 
     if (notification.hasErrors()) {
