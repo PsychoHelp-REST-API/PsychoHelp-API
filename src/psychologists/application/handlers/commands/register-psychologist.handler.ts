@@ -74,7 +74,7 @@ export class RegisterPsychologistHandler
       return 0;
     }
 
-    const psychologistId: number = Number(psychologistTypeORM.id.value);
+    const psychologistId = Number(psychologistTypeORM.id.value);
     psychologist.changeId(PsychologistId.create(psychologistId));
     psychologist = this.publisher.mergeObjectContext(psychologist);
     psychologist.register();

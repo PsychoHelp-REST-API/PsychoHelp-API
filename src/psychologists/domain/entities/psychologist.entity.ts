@@ -40,7 +40,8 @@ export class Psychologist extends AggregateRoot {
       this.dni.getValue(),
       this.email.getValue(),
       this.password.getValue(),
-      this.description.getValue());
+      this.description.getValue(),
+    );
     this.apply(event);
   }
 
