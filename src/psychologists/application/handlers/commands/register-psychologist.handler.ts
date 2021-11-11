@@ -5,10 +5,10 @@ import { PsychologistTypeORM } from '../../../infrastructure/persistence/typeorm
 import { Repository } from 'typeorm';
 import { Result } from 'typescript-result';
 import { AppNotification } from '../../../../common/application/app.notification';
-import { Dni } from '../../../domain/value-objects/dni.value';
+import { Dni } from '../../../../common/domain/value-objects/dni.value';
 import { Name } from '../../../../common/domain/value-objects/name.value';
 import { Email } from '../../../../common/domain/value-objects/email.value';
-import { Password } from '../../../domain/value-objects/password.value';
+import { Password } from '../../../../common/domain/value-objects/password.value';
 import { Description } from '../../../domain/value-objects/description.value';
 import { Psychologist } from '../../../domain/entities/psychologist.entity';
 import { PsychologistFactory } from '../../../domain/factories/psychologist.factory';
@@ -74,7 +74,7 @@ export class RegisterPsychologistHandler
       return 0;
     }
 
-    const psychologistId: number = Number(psychologistTypeORM.id.value);
+    const psychologistId = Number(psychologistTypeORM.id.value);
     psychologist.changeId(PsychologistId.create(psychologistId));
     psychologist = this.publisher.mergeObjectContext(psychologist);
     psychologist.register();

@@ -1,27 +1,24 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { PsychologistId } from '../value-objects/psychologist-id.value';
 import { Name } from '../../../common/domain/value-objects/name.value';
 import { Email } from '../../../common/domain/value-objects/email.value';
 import { Dni } from '../../../common/domain/value-objects/dni.value';
-import { Description } from '../value-objects/description.value';
 import { Password } from '../../../common/domain/value-objects/password.value';
-import { PsychologistRegisteredEvent } from '../events/psychologist-registered.event';
+import { PatientId } from '../value-objects/patient-id.value';
+import { PatientRegisteredEvent } from '../events/patient-registered.event';
 
-export class Psychologist extends AggregateRoot {
-  private id: PsychologistId;
+export class Patient extends AggregateRoot {
+  private id: PatientId;
   private name: Name;
   private dni: Dni;
   private email: Email;
   private password: Password;
-  private description: Description;
 
   constructor(
-    id: PsychologistId,
+    id: PatientId,
     name: Name,
     dni: Dni,
     email: Email,
     password: Password,
-    description: Description,
   ) {
     super();
     this.id = id;
@@ -29,23 +26,21 @@ export class Psychologist extends AggregateRoot {
     this.dni = dni;
     this.email = email;
     this.password = password;
-    this.description = description;
   }
 
   public register() {
-    const event = new PsychologistRegisteredEvent(
+    const event = new PatientRegisteredEvent(
       this.id.getValue(),
       this.name.getFirstName(),
       this.name.getLastName(),
       this.dni.getValue(),
       this.email.getValue(),
       this.password.getValue(),
-      this.description.getValue(),
     );
     this.apply(event);
   }
 
-  public getId(): PsychologistId {
+  public getId(): PatientId {
     return this.id;
   }
 
@@ -65,31 +60,7 @@ export class Psychologist extends AggregateRoot {
     return this.password;
   }
 
-  public getDescription(): Description {
-    return this.description;
-  }
-
-  public changeId(id: PsychologistId) {
+  public changeId(id: PatientId) {
     this.id = id;
-  }
-
-  public changeName(name: Name): void {
-    this.name = name;
-  }
-
-  public changeDni(dni: Dni): void {
-    this.dni = dni;
-  }
-
-  public changeEmail(email: Email): void {
-    this.email = email;
-  }
-
-  public changePassword(password: Password): void {
-    this.password = password;
-  }
-
-  public changeDescription(description: Description): void {
-    this.description = description;
   }
 }

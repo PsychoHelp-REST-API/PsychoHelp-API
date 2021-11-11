@@ -15,46 +15,49 @@ export class RegisterPsychologistValidator {
   public async validate(
     registerPsychologistRequestDto: RegisterPsychologistRequestDto,
   ): Promise<AppNotification> {
-    let notification: AppNotification = new AppNotification();
+    const notification: AppNotification = new AppNotification();
     const firstName: string = registerPsychologistRequestDto.firstName.trim();
-    if(firstName.length <= 0){
+    if (firstName.length <= 0) {
       notification.addError('Psychologist firstName is required', null);
     }
 
     const lastName: string = registerPsychologistRequestDto.lastName.trim();
-    if(lastName.length<=0){
+    if (lastName.length <= 0) {
       notification.addError('Psychologist lastName is required', null);
     }
 
     const dni: string = registerPsychologistRequestDto.dni.trim();
-    if(dni.length<=0){
+    if (dni.length <= 0) {
       notification.addError('Psychologist dni is required', null);
     }
 
     const email: string = registerPsychologistRequestDto.email.trim();
-    if(email.length<=0){
+    if (email.length <= 0) {
       notification.addError('Psychologist email is required', null);
     }
 
     const password: string = registerPsychologistRequestDto.password.trim();
-    if(password.length<=0){
+    if (password.length <= 0) {
       notification.addError('Psychologist password is required', null);
     }
 
-    const description: string = registerPsychologistRequestDto.description.trim();
-    if(description.length<=0){
+    const description: string =
+      registerPsychologistRequestDto.description.trim();
+    if (description.length <= 0) {
       notification.addError('Psychologist dni is required', null);
     }
 
-    if(notification.hasErrors()){
+    if (notification.hasErrors()) {
       return notification;
     }
 
-    const psychologist: PsychologistTypeORM = await this.psychologistRepository.createQueryBuilder().where("dni = :dni", {dni} ).getOne();
-    if(psychologist != null){
+    const psychologist: PsychologistTypeORM = await this.psychologistRepository
+      .createQueryBuilder()
+      .where('dni = :dni', { dni })
+      .getOne();
+    if (psychologist != null) {
       notification.addError('Psychologist dni is taken', null);
     }
     return notification;
-
   }
 }

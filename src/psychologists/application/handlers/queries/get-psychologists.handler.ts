@@ -1,13 +1,15 @@
-import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { GetPsychologistsQuery } from "../../queries/get-psychologists.query";
-import { getManager } from "typeorm";
-import { GetPsychologistsDto } from "../../dtos/queries/get-psychologists.dto";
+import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { GetPsychologistsQuery } from '../../queries/get-psychologists.query';
+import { getManager } from 'typeorm';
+import { GetPsychologistsDto } from '../../dtos/queries/get-psychologists.dto';
 
 @QueryHandler(GetPsychologistsQuery)
-export class GetPsychologistsHandler implements IQueryHandler<GetPsychologistsQuery>{
+export class GetPsychologistsHandler
+  implements IQueryHandler<GetPsychologistsQuery>
+{
   constructor() {}
 
-  async execute(query: GetPsychologistsQuery){
+  async execute(query: GetPsychologistsQuery) {
     const manager = getManager();
     const sql = `
     SELECT
@@ -24,12 +26,14 @@ export class GetPsychologistsHandler implements IQueryHandler<GetPsychologistsQu
     last_name, first_name;`;
 
     const ormPsychologists = await manager.query(sql);
-    if(ormPsychologists.length <= 0) {
+    if (ormPsychologists.length <= 0) {
       return [];
     }
 
-    const psychologists: GetPsychologistsDto[] = ormPsychologists.map(function(ormPsychologist){
-      let psychologistDto = new GetPsychologistsDto();
+    const psychologists: GetPsychologistsDto[] = ormPsychologists.map(function (
+      ormPsychologist,
+    ) {
+      const psychologistDto = new GetPsychologistsDto();
       psychologistDto.id = Number(ormPsychologist.id);
       psychologistDto.firstName = ormPsychologist.firstName;
       psychologistDto.lastName = ormPsychologist.lastName;
