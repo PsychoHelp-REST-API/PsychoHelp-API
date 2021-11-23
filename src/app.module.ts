@@ -5,9 +5,10 @@ import { PsychologistsModule } from "./psychologists/psychologists.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PatientsModule } from "./patients/patients.module";
 import { AppointmentsModule } from './appointments/appointments.module';
+import { BillingsModule } from "./billings/billings.module";
 
 @Module({
-  imports: [ PsychologistsModule, PatientsModule, AppointmentsModule, TypeOrmModule.forRoot()],
+  imports: [ PsychologistsModule, PatientsModule, AppointmentsModule, BillingsModule, TypeOrmModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
