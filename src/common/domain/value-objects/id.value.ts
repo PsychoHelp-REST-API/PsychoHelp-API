@@ -9,7 +9,12 @@ export class Id {
     return new Id(value);
   }
 
+  public static create(value: number) {
+    return new Id(value);
+  }
+
   public getValue(): number{
     return Number(this.value);
   }
 }
+

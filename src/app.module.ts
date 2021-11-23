@@ -6,9 +6,10 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { PatientsModule } from "./patients/patients.module";
 import { AppointmentsModule } from './appointments/appointments.module';
 import { BillingsModule } from "./billings/billings.module";
+import { LogbookModule } from './logbooks/logbook.module';
 
 @Module({
-  imports: [ PsychologistsModule, PatientsModule, AppointmentsModule, BillingsModule, TypeOrmModule.forRoot()],
+  imports: [ PsychologistsModule, PatientsModule, AppointmentsModule, BillingsModule, LogbookModule, TypeOrmModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
