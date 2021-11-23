@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: psychohelp_api
+  - name: psychohelp-api-nest
     memory: 512MB
     instances: 1
     buildpacks:
