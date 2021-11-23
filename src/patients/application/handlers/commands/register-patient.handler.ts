@@ -64,7 +64,7 @@ export class RegisterPatientHandler
       return 0;
     }
 
-    const patientId = Number(patientTypeORM.id.value);
+    const patientId = Number(patientTypeORM.id);
     patient.changeId(PatientId.create(patientId));
     patient = this.publisher.mergeObjectContext(patient);
     patient.register();

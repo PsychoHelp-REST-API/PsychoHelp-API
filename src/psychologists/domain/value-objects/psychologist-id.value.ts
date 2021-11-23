@@ -5,7 +5,7 @@ export class PsychologistId {
     this.value = value;
   }
 
-  public static create(value: number) {
+  public static create(value: number): PsychologistId {
     return new PsychologistId(value);
   }
 

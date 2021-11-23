@@ -1,4 +1,4 @@
-import { Column, Entity, Unique } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { PsychologistIdTypeORM } from './psychologist.id.typeorm';
 import { NameTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/name.typeorm';
 import { DniTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/dni.typeorm';
@@ -9,8 +9,8 @@ import { DescriptionTypeORM } from './description.typeorm';
 @Entity('psychologists')
 @Unique('UQ_customers_dni', ['dni.value'])
 export class PsychologistTypeORM {
-  @Column((type) => PsychologistIdTypeORM, { prefix: false })
-  public id: PsychologistIdTypeORM;
+  @PrimaryGeneratedColumn('increment', {type: 'bigint', name: 'id', unsigned: true})
+  public id: number;
 
   @Column((type) => NameTypeORM, { prefix: false })
   public name: NameTypeORM;
