@@ -1,4 +1,4 @@
-import { Column, Entity, Unique } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { PatientIdTypeORM } from './patient.id.typeorm';
 import { NameTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/name.typeorm';
 import { DniTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/dni.typeorm';
@@ -8,8 +8,8 @@ import { PasswordTypeORM } from '../../../../../psychologists/infrastructure/per
 @Entity('patients')
 @Unique('UQ_patients_dni', ['dni.value'])
 export class PatientTypeORM {
-  @Column((type) => PatientIdTypeORM, { prefix: false })
-  public id: PatientIdTypeORM;
+  @PrimaryGeneratedColumn('increment', {type: 'bigint', name: 'id', unsigned: true})
+  public id: number;
 
   @Column((type) => NameTypeORM, { prefix: false })
   public name: NameTypeORM;

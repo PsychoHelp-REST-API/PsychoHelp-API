@@ -9,7 +9,7 @@ import { PasswordTypeORM } from '../../../psychologists/infrastructure/persisten
 export class PatientMapper {
   public static toTypeORM(patient: Patient): PatientTypeORM {
     const patientTypeORM: PatientTypeORM = new PatientTypeORM();
-    patientTypeORM.id = PatientIdTypeORM.from(patient.getId().getValue());
+    patientTypeORM.id = patient.getId() != null ? patient.getId().getValue() : 0;
     patientTypeORM.name = NameTypeORM.from(
       patient.getName().getFirstName(),
       patient.getName().getLastName(),
