@@ -10,7 +10,7 @@ import { PatientIdTypeORM } from "../../../patients/infrastructure/persistence/t
 export class BillingMapper {
   public static toTypeORM(billing: Billing): BillingTypeORM {
     const billingTypeORM: BillingTypeORM = new BillingTypeORM();
-    billingTypeORM.id = billing.getId().getValue();
+    billingTypeORM.id = billing.getId() != null ? billing.getId().getValue() : 0;
     billingTypeORM.patientId = PatientIdTypeORM.from(billing.getPatientId().getValue());
     billingTypeORM.code = CodeTypeORM.from(billing.getCode().getCode());
     billingTypeORM.description = billing.getDescription() != null ? DescriptionTypeORM.from(billing.getDescription().getDescription()) : null;

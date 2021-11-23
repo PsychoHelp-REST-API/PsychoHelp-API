@@ -28,18 +28,26 @@ export class IssueBillingHandler
     let billId: number = 0;
 
     const codeResult: Result<AppNotification, BillingCode> = BillingCode.createCode(command.code);
-    if (codeResult.isFailure()) return billId;
+    if (codeResult.isFailure()){
+      return billId;
+    }
 
     const patientId: PatientId = PatientId.of(command.patientId);
 
     const amountResult:Result<AppNotification, Money> = Money.create(command.amount);
-    if (amountResult.isFailure()) return billId;
+    if (amountResult.isFailure()) {
+      return billId;
+    }
 
     const descriptionResult: Result<AppNotification, Description> = Description.create(command.description);
-    if (descriptionResult.isFailure()) return billId;
+    if (descriptionResult.isFailure()) {
+      return billId;
+    }
 
     const dateResult: Result<AppNotification, BillingDate> = BillingDate.create(command.date);
-    if (dateResult.isFailure()) return billId;
+    if (dateResult.isFailure()) {
+      return billId;
+    }
 
     let billing: Billing = BillingFactory.createFrom(
       patientId,
@@ -50,7 +58,9 @@ export class IssueBillingHandler
     );
     let billingTypeORM: BillingTypeORM = BillingMapper.toTypeORM(billing);
     billingTypeORM = await this.billingRepository.save(billingTypeORM);
-    if (billingTypeORM == null) return billId;
+    if (billingTypeORM == null) {
+      return billId;
+    }
 
     billId = Number(billingTypeORM.id);
     billing.changeId(BillingId.createBillId(billId));

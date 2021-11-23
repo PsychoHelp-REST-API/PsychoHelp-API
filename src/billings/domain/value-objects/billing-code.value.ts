@@ -16,7 +16,7 @@ export class BillingCode {
     if (value === "") {
       notification.addError('bill code is required', null);
     }
-    if (value.length != this.MAX_LENGTH) {
+    if (value.length > this.MAX_LENGTH) {
       notification.addError('bill code field must have ' + this.MAX_LENGTH + ' digits', null);
     }
     const regExp = new RegExp('^[0-9]+$');
