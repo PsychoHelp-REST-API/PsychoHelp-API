@@ -10,9 +10,7 @@ import { DescriptionTypeORM } from '../../infrastructure/persistence/typeorm/ent
 export class PsychologistMapper {
   public static toTypeORM(psychologist: Psychologist): PsychologistTypeORM {
     const psychologistTypeORM: PsychologistTypeORM = new PsychologistTypeORM();
-    psychologistTypeORM.id = PsychologistIdTypeORM.from(
-      psychologist.getId().getValue(),
-    );
+    psychologistTypeORM.id = psychologist.getId() != null ? psychologist.getId().getValue() : 0;
     psychologistTypeORM.name = NameTypeORM.from(
       psychologist.getName().getFirstName(),
       psychologist.getName().getLastName(),
