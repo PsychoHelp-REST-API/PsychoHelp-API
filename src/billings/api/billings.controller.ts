@@ -25,6 +25,7 @@ export class BillingsController {
       const result: Result<AppNotification, IssueBillingResponseDto> =
         await this.billingsService.issue(issueBillingRequestDto);
       if (result.isSuccess()) {
+        this.billingsService.executeObserver();
         return ApiController.created(response, result.value);
       }
       return ApiController.error(response, result.error.getErrors());

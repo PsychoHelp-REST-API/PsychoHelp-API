@@ -6,6 +6,9 @@ import { Result } from "typescript-result";
 import { AppNotification } from "../../../common/application/app.notification";
 import { IssueBillingResponseDto } from "../dtos/response/issue-billing-response.dto";
 import { IssueBillingCommand } from "../commands/issue-billing.command";
+import { ConcreteSubject } from "../observer/concrete-subject";
+import { ObserverAttending } from "../observer/observer-attending";
+import { ObserverNotification } from "../observer/observer-notification";
 
 @Injectable()
 export class BillingsService {
@@ -43,5 +46,16 @@ export class BillingsService {
       issueBillingRequestDto.date
     );
     return Result.ok(issueBillingResponseDto);
+  }
+
+  executeObserver(): void {
+    const subject = new ConcreteSubject();
+    const observerAttending = new ObserverAttending();
+    const observerNotification = new ObserverNotification();
+
+    subject.attach(observerAttending);
+    subject.attach(observerNotification);
+
+    subject.notify();
   }
 }
