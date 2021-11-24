@@ -15,7 +15,7 @@ export class PsychologistFactory {
     description: Description,
   ): Psychologist {
     return new Psychologist(
-      PsychologistId.create(0),
+      PsychologistId.of(0),
       name,
       dni,
       email,

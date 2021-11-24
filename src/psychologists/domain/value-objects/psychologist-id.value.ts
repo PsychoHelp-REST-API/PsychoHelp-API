@@ -1,15 +1,3 @@
-export class PsychologistId {
-  private readonly value: number;
+import { IdNumber } from '../../../common/domain/value-objects/id-number.value';
 
-  private constructor(value: number) {
-    this.value = value;
-  }
-
-  public static create(value: number) {
-    return new PsychologistId(value);
-  }
-
-  public getValue(): number {
-    return this.value;
-  }
-}
+export class PsychologistId extends IdNumber {}

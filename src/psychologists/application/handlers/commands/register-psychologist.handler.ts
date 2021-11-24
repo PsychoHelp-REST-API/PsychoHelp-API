@@ -75,7 +75,7 @@ export class RegisterPsychologistHandler
     }
 
     const psychologistId = Number(psychologistTypeORM.id.value);
-    psychologist.changeId(PsychologistId.create(psychologistId));
+    psychologist.changeId(PsychologistId.of(psychologistId));
     psychologist = this.publisher.mergeObjectContext(psychologist);
     psychologist.register();
     psychologist.commit();
