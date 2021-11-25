@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PatientsApplicationService } from '../application/services/patients-application.service';
 import { QueryBus } from '@nestjs/cqrs';
 import { RegisterPatientRequestDto } from '../application/dtos/request/register-patient-request.dto';
@@ -8,6 +9,8 @@ import { RegisterPatientResponseDto } from '../application/dtos/response/registe
 import { ApiController } from '../../common/api/api.controller';
 import { GetPatientsQuery } from '../application/queries/get-patients.query';
 
+@ApiBearerAuth()
+@ApiTags('Patient')
 @Controller('patients')
 export class PatientsController {
   constructor(
@@ -16,6 +19,7 @@ export class PatientsController {
   ) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create patient' })
   async register(
     @Body() registerPatientRequestDto: RegisterPatientRequestDto,
     @Res({ passthrough: true }) response,
@@ -35,6 +39,7 @@ export class PatientsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'All Patients' })
   async GetPatients(@Res({ passthrough: true }) response): Promise<object> {
     try {
       const patients = await this.queryBus.execute(new GetPatientsQuery());

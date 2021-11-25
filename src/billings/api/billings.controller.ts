@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post, Res } from "@nestjs/common";
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { BillingsService } from '../application/services/billings.service';
 import { QueryBus } from "@nestjs/cqrs";
 import { IssueBillingRequestDto } from "../application/dtos/request/issue-billing-request.dto";
@@ -9,6 +10,8 @@ import { ApiController } from "../../common/api/api.controller";
 import { GetBillingQuery } from "../application/queries/get-billing.query";
 import { GetBillingByIdQuery } from "../application/queries/get-billing-by-id.query";
 
+@ApiBearerAuth()
+@ApiTags('Billing')
 @Controller('billings')
 export class BillingsController {
   constructor(
@@ -16,6 +19,7 @@ export class BillingsController {
     private readonly queryBus: QueryBus
   ) {}
 
+  @ApiOperation({ summary: 'Create billing' })
   @Post()
   async issue(
     @Body() issueBillingRequestDto: IssueBillingRequestDto,
@@ -35,6 +39,7 @@ export class BillingsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'All billings' })
   async getBillings(@Res({ passthrough: true }) response): Promise<object> {
     try {
       const billings = await this.queryBus.execute(new GetBillingQuery());
@@ -45,6 +50,7 @@ export class BillingsController {
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Billings for Id' })
   async getById(@Param('id') billingId: number, @Res({passthrough: true}) response):
   Promise<object> {
     try {
