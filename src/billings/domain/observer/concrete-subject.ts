@@ -1,8 +1,7 @@
-import { Subject } from "../../domain/observer/subject";
-import { Observer } from "../../domain/observer/observer";
+import { Subject } from "./abstract/subject";
+import { Observer } from "./abstract/observer";
 
 export class ConcreteSubject implements Subject {
-  public state: number;
   private observers: Observer[] = [];
 
   public attach(observer: Observer): void {
@@ -28,12 +27,5 @@ export class ConcreteSubject implements Subject {
     for (const observer of this.observers) {
       observer.update(this);
     }
-  }
-
-  public someBusinessLogic(): void {
-    console.log('\nSubject: I\'m doing something important.');
-    this.state = Math.floor(Math.random() * (10 + 1));
-    console.log(`Subject: My state has just changed to: ${this.state}`);
-    this.notify();
   }
 }

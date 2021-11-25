@@ -13,9 +13,6 @@ export class BillingTypeORM {
   @PrimaryGeneratedColumn('increment', { type: 'bigint', name: 'id', unsigned: true })
   public id: number;
 
-  //@Column((type) => BillingIdTypeorm, { prefix: false })
-  //public id: BillingIdTypeorm;
-
   @Column((type) => PatientIdTypeORM, {prefix: false})
   public patientId: PatientIdTypeORM;
 

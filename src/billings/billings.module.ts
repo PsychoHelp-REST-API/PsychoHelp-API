@@ -9,13 +9,14 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { BillingTypeORM } from "./infrastructure/persistence/typeorm/entities/billing.typeorm";
 import { IssueBillingValidator } from "./application/validators/issue-billing.validator";
 import { GetBillingByIdHandler } from "./application/handlers/queries/get-billing-by-id.handler";
+import { PatientTypeORM } from "../patients/infrastructure/persistence/typeorm/entities/patient.typeorm";
 
 export const CommandHandlers = [IssueBillingHandler];
 export const EventHandlers = [BillingIssuedHandler];
 export const QueryHandlers = [GetBillingsHandler, GetBillingByIdHandler];
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([BillingTypeORM])],
+  imports: [CqrsModule, TypeOrmModule.forFeature([BillingTypeORM, PatientTypeORM])],
   controllers: [BillingsController],
   providers: [
     BillingsService,
