@@ -1,11 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { PatientIdTypeORM } from "../../../../../patients/infrastructure/persistence/typeorm/entities/patient.id.typeorm";
-import { PsychologistIdTypeORM } from "../../../../../psychologists/infrastructure/persistence/typeorm/entities/psychologist.id.typeorm";
-import { DateTypeORM } from "./date.typeorm";
+import { PatientIdTypeORM } from "../../../../../patients/infrastructure/persistence/typeorm/value-objects/patient.id.typeorm";
+import { PsychologistIdTypeORM } from "../../../../../psychologists/infrastructure/persistence/typeorm/value-objects/psychologist.id.typeorm";
+import { DateTypeORM } from "../value-objects/date.typeorm";
 import { AppointmentStatus } from "../../../../domain/enums/appointment.status.enum";
-import { ReasonConsultationTypeORM } from "./reason-consultation.typeorm";
-import { PatientIdFromTypeorm } from "./patient-id-from.typeorm";
-import { PsychologistIdToTypeORM } from "./psychologist-id-to.typeorm";
+import { ReasonConsultationTypeORM } from "../value-objects/reason-consultation.typeorm";
+import { PatientIdFromTypeorm } from "../value-objects/patient-id-from.typeorm";
+import { PsychologistIdToTypeORM } from "../value-objects/psychologist-id-to.typeorm";
 
 @Entity('appointments')
 export class AppointmentTypeORM {

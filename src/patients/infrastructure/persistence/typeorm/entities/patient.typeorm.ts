@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { PatientIdTypeORM } from './patient.id.typeorm';
+import { PatientIdTypeORM } from '../value-objects/patient.id.typeorm';
 import { NameTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/name.typeorm';
 import { DniTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/dni.typeorm';
-import { EmailTypeORM } from '../../../../../psychologists/infrastructure/persistence/typeorm/entities/email.typeorm';
-import { PasswordTypeORM } from '../../../../../psychologists/infrastructure/persistence/typeorm/entities/password.typeorm';
+import { EmailTypeORM } from '../../../../../psychologists/infrastructure/persistence/typeorm/value-objects/email.typeorm';
+import { PasswordTypeORM } from '../../../../../psychologists/infrastructure/persistence/typeorm/value-objects/password.typeorm';
 
 @Entity('patients')
 @Unique('UQ_patients_dni', ['dni.value'])

@@ -1,10 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { PsychologistIdTypeORM } from './psychologist.id.typeorm';
+import { PsychologistIdTypeORM } from '../value-objects/psychologist.id.typeorm';
 import { NameTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/name.typeorm';
 import { DniTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/entities/dni.typeorm';
-import { EmailTypeORM } from './email.typeorm';
-import { PasswordTypeORM } from './password.typeorm';
-import { DescriptionTypeORM } from './description.typeorm';
+import { EmailTypeORM } from '../value-objects/email.typeorm';
+import { PasswordTypeORM } from '../value-objects/password.typeorm';
+import { DescriptionTypeORM } from '../value-objects/description.typeorm';
 
 @Entity('psychologists')
 @Unique('UQ_customers_dni', ['dni.value'])
