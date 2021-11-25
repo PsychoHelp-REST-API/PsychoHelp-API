@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from "@nestjs/common";
+import { Body, Controller, Get, Post, Res } from "@nestjs/common";
 import { AppointmentsService } from '../application/services/appointments.service';
 import { AppointmentApplicationService } from "../application/services/appointment-application.service";
 import { QueryBus } from "@nestjs/cqrs";
@@ -6,6 +6,7 @@ import { ScheduleRequestDto } from "../application/dtos/request/schedule-request
 import { Result } from "typescript-result";
 import { AppNotification } from "../../common/application/app.notification";
 import { ApiController } from "../../common/api/api.controller";
+import { GetAppointmentQuery } from "../application/queries/get-appointment.query";
 
 @Controller('appointments')
 export class AppointmentsController {
@@ -28,4 +29,16 @@ export class AppointmentsController {
       return ApiController.serverError(response, error);
     }
   }
+
+  @Get()
+  async getAppointments(@Res({passthrough: true}) response): Promise<object>{
+    try{
+      const appointments = await this.queryBys.execute(new GetAppointmentQuery());
+      return ApiController.ok(response, appointments);
+    }catch (error){
+      return ApiController.serverError(response, error);
+    }
+  }
+
+
 }
