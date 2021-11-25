@@ -20,7 +20,7 @@ export class GetLogbookByPatientIdHandler implements IQueryHandler<GetLogbookByP
         logbooks l
     WHERE
     l.patient_id = ?;`;
-    const ormLogbooks = await manager.query(sql, [query.psychologistId]);
+    const ormLogbooks = await manager.query(sql, [query.patientId]);
     if (ormLogbooks.length <= 0){
       return {};
     }
