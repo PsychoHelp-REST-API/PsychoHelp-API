@@ -8,6 +8,7 @@ import {
   Delete,
   Res,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LogbookService } from '../application/services/logbook.service';
 import { CreateLogbookDto } from '../application/dto/request/create-logbook.dto';
 import { UpdateLogbookDto } from '../application/dto/request/update-logbook.dto';
@@ -18,6 +19,8 @@ import { QueryBus } from '@nestjs/cqrs';
 import { GetLogbooksQuery } from '../application/queries/get-logbooks.query';
 import { GetLogbookByIdQuery } from '../application/queries/get-logbook-by-id.query';
 
+@ApiBearerAuth()
+@ApiTags('Logbook')
 @Controller('logbooks')
 export class LogbookController {
   constructor(
@@ -26,6 +29,7 @@ export class LogbookController {
   ) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create logbook' })
   async create(
     @Body() createLogbookDto: CreateLogbookDto,
     @Res({ passthrough: true }) response
@@ -46,6 +50,7 @@ export class LogbookController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'All logbooks' })
   async getLogbooks(
     @Res({passthrough:true}) response
   ):Promise<object> {
@@ -58,6 +63,7 @@ export class LogbookController {
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Logbooks for Id' })
   async findOne(
     @Param('id') id: number,
     @Res({ passthrough: true}) response
@@ -72,11 +78,13 @@ export class LogbookController {
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Patch logbooks' })
   update(@Param('id') id: string, @Body() updateLogbookDto: UpdateLogbookDto) {
     return this.logbookService.update(+id, updateLogbookDto);
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete logbooks' })
   remove(@Param('id') id: string) {
     return this.logbookService.remove(+id);
   }

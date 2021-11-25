@@ -10,10 +10,11 @@ import { AppointmentTypeORM } from "./infrastructure/persistence/typeorm/entitie
 import { PatientTypeORM } from "../patients/infrastructure/persistence/typeorm/entities/patient.typeorm";
 import { PsychologistTypeORM } from "../psychologists/infrastructure/persistence/typeorm/entities/psychologist.typeorm";
 import { ScheduleAppointmentValidator } from "./application/validators/schedule-appointment.validator";
+import { GetAppointmentsHandler } from "./application/handlers/queries/get-appointments.handler";
 
 export const CommandHandlers = [ScheduleAppointmentHandler];
 export const EventHandlers = [AppointmentScheduledHandler];
-export const QueryHandlers = [];
+export const QueryHandlers = [GetAppointmentsHandler];
 
 @Module({
   imports: [

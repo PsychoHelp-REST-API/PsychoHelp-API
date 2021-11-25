@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Res } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { QueryBus } from '@nestjs/cqrs';
 import { RegisterPsychologistRequestDto } from '../application/dtos/request/register-psychologist-request.dto';
 import { PsychologistsApplicationService } from '../application/services/psychologists-application.service';
@@ -8,6 +9,8 @@ import { RegisterPsychologistResponseDto } from '../application/dtos/response/re
 import { ApiController } from '../../common/api/api.controller';
 import { GetPsychologistsQuery } from '../application/queries/get-psychologists.query';
 
+@ApiBearerAuth()
+@ApiTags('Psychologist')
 @Controller('psychologists')
 export class PsychologistsController {
   constructor(
@@ -16,6 +19,7 @@ export class PsychologistsController {
   ) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create psychologist' })
   async register(
     @Body() registerPsychologistRequestDto: RegisterPsychologistRequestDto,
     @Res({ passthrough: true }) response,
@@ -35,6 +39,7 @@ export class PsychologistsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'All psychologists' })
   async GetPsychologists(
     @Res({ passthrough: true }) response,
   ): Promise<object> {
