@@ -11,6 +11,7 @@ import { CreateLogbookValidator } from './application/validators/create-logbook.
 import { PatientLogbookController } from './api/patient-logbook.controller';
 import { GetLogbookByPatientIdHandler } from './application/handlers/queries/get-logbook-by-patient-id.handler';
 import { GetLogbookByIdHandler } from './application/handlers/queries/get-logbook-by-id.handler';
+import { PatientTypeORM } from "../patients/infrastructure/persistence/typeorm/entities/patient.typeorm";
 
 export const CommandHandlers = [CreateLogbookHandler];
 export const EventHandlers = [LogbookCreatedHandler];
@@ -19,7 +20,7 @@ export const QueryHandlers = [GetLogbooksHandler, GetLogbookByPatientIdHandler, 
 @Module({
   imports:[
     CqrsModule,
-    TypeOrmModule.forFeature([LogbookTypeORM]),
+    TypeOrmModule.forFeature([LogbookTypeORM, PatientTypeORM]),
   ],
   controllers: [LogbookController, PatientLogbookController],
   providers: [
