@@ -6,9 +6,9 @@ import { Result } from "typescript-result";
 import { AppNotification } from "../../../common/application/app.notification";
 import { IssueBillingResponseDto } from "../dtos/response/issue-billing-response.dto";
 import { IssueBillingCommand } from "../commands/issue-billing.command";
-import { ConcreteSubject } from "../observer/concrete-subject";
-import { ObserverAttending } from "../observer/observer-attending";
-import { ObserverNotification } from "../observer/observer-notification";
+import { ConcreteSubject } from "../../domain/observer/concrete-subject";
+import { ObserverAttending } from "../../domain/observer/observer-attending";
+import { ObserverNotification } from "../../domain/observer/observer-notification";
 
 @Injectable()
 export class BillingsService {

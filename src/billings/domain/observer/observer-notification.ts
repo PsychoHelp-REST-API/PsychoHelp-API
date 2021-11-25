@@ -1,5 +1,5 @@
-import { Observer } from "../../domain/observer/observer";
-import { Subject } from "../../domain/observer/subject";
+import { Observer } from "./abstract/observer";
+import { Subject } from "./abstract/subject";
 
 export class ObserverNotification implements Observer {
   update(subject: Subject): void {
