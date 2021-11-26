@@ -1,7 +1,6 @@
 import { Result } from "typescript-result";
 import { AppNotification } from "../../../common/application/app.notification";
 
-
 export class AccountNumber {
   private readonly value: string;
   private static MAX_LENGTH: number = 10;

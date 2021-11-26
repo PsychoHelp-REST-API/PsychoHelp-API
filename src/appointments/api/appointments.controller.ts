@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Res } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AppointmentApplicationService } from '../application/services/appointment-application.service';
 import { QueryBus } from '@nestjs/cqrs';
@@ -7,6 +7,7 @@ import { Result } from 'typescript-result';
 import { AppNotification } from '../../common/application/app.notification';
 import { ApiController } from '../../common/api/api.controller';
 import { GetAppointmentQuery } from '../application/queries/get-appointment.query';
+import { GetAppointmentsByPsychologistIdQuery } from "../application/queries/get-appointments-by-psychologist-id.query";
 
 @ApiBearerAuth()
 @ApiTags('Appointment')
@@ -46,5 +47,26 @@ export class AppointmentsController {
     } catch (error) {
       return ApiController.serverError(response, error);
     }
+  }
+
+  @Get('psychologistId/:psychologistId')
+  @ApiOperation({ summary: 'Appointment by Psychologist Id'})
+  async findOne(
+    @Param('psychologistId') psychologistId: string,
+    @Res( { passthrough: true}) response
+  ): Promise<object>{
+    try{
+      console.log(psychologistId);
+      const appointment = await this.queryBys.execute(new GetAppointmentsByPsychologistIdQuery(psychologistId));
+      return ApiController.ok(response, appointment);
+    } catch (error){
+      return ApiController.serverError(response, error);
+    }
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete appointment by Id'})
+  remove(@Param('id') id: string){
+    return this.appointmentsApplicationService.remove(+id);
   }
 }

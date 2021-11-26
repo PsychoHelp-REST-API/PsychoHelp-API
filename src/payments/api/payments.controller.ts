@@ -6,13 +6,17 @@ import { AppNotification } from "../../common/application/app.notification";
 import { DepositResponseDto } from "../application/dtos/response/deposit-response.dto";
 import { Result } from "typescript-result";
 import { ApiController } from "../../common/api/api.controller";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('Payment')
 @Controller('payments')
 export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService,
               private readonly queryBus: QueryBus) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create payment'})
   async deposit(
     @Body() depositRequestDto: DepositRequestDto,
     @Res({passthrough: true}) response

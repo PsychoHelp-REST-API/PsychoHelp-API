@@ -1,7 +1,7 @@
-import { AccountNumber } from "../value-objects/account-number.value";
 import { Money } from "../../../common/domain/value-objects/money.value";
 import { PsychologistId } from "../../../psychologists/domain/value-objects/psychologist-id.value";
 import { Account } from "../entities/account.entity";
+import { AccountNumber } from "../value-objects/account-number.value";
 import { AccountId } from "../value-objects/account-id.value";
 
 export class AccountFactory{

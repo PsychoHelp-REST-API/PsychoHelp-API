@@ -7,7 +7,10 @@ import { AppNotification } from "../../common/application/app.notification";
 import { OpenAccountResponse } from "../application/dtos/response/open-account-response.dto";
 import { ApiController } from "../../common/api/api.controller";
 import { GetAccountsQuery } from "../application/queries/get-accounts.query";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('Account')
 @Controller('accounts')
 export class AccountsController {
   constructor(
@@ -15,6 +18,7 @@ export class AccountsController {
     private readonly queryBus: QueryBus) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create account'})
   async open(
     @Body() openAccountRequest: OpenAccountRequest,
     @Res({passthrough: true}) response
@@ -31,6 +35,7 @@ export class AccountsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Get all accounts'})
   async getAccounts(
     @Res({passthrough: true}) response
   ): Promise<object> {
