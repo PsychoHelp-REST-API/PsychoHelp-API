@@ -21,7 +21,7 @@ export class Money {
   }
 
   public add(other: Money): Money {
-    return this.newMoney(this.amount + other.getAmount());
+    return this.newMoney(this.amount * 1 + other.getAmount() * 1);
   }
 
   public subtract(other: Money): Money {

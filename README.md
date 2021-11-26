@@ -62,6 +62,6 @@ FLUSH PRIVILEGES;
 ```
 ## Stay in touch
 
-- Author - CodeTech Members
+- Author - AgileTech Members
 
 

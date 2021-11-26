@@ -1,10 +1,10 @@
 import { Patient } from '../../domain/entities/patient.entity';
-import { PatientIdTypeORM } from '../../infrastructure/persistence/typeorm/entities/patient.id.typeorm';
+import { PatientIdTypeORM } from '../../infrastructure/persistence/typeorm/value-objects/patient.id.typeorm';
 import { PatientTypeORM } from '../../infrastructure/persistence/typeorm/entities/patient.typeorm';
 import { NameTypeORM } from '../../../common/infrastructure/persistence/typeorm/entities/name.typeorm';
 import { DniTypeORM } from '../../../common/infrastructure/persistence/typeorm/entities/dni.typeorm';
-import { EmailTypeORM } from '../../../psychologists/infrastructure/persistence/typeorm/entities/email.typeorm';
-import { PasswordTypeORM } from '../../../psychologists/infrastructure/persistence/typeorm/entities/password.typeorm';
+import { EmailTypeORM } from '../../../psychologists/infrastructure/persistence/typeorm/value-objects/email.typeorm';
+import { PasswordTypeORM } from '../../../psychologists/infrastructure/persistence/typeorm/value-objects/password.typeorm';
 
 export class PatientMapper {
   public static toTypeORM(patient: Patient): PatientTypeORM {

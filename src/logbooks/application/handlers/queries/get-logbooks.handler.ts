@@ -16,7 +16,7 @@ export class GetLogbooksHandler implements IQueryHandler<GetLogbooksQuery> {
       consultation_reason as consultation_reason,
       description
     FROM 
-      logbooks 
+      logbooks
     ORDER BY
       id;`;
     const ormLogbooks = await manager.query(sql);
