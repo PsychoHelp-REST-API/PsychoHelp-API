@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Res, Delete, Param, Put, ParseIntPipe } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { QueryBus } from '@nestjs/cqrs';
 import { RegisterPsychologistRequestDto } from '../application/dtos/request/register-psychologist-request.dto';
@@ -8,6 +8,7 @@ import { AppNotification } from '../../common/application/app.notification';
 import { RegisterPsychologistResponseDto } from '../application/dtos/response/register-psychologist-response.dto';
 import { ApiController } from '../../common/api/api.controller';
 import { GetPsychologistsQuery } from '../application/queries/get-psychologists.query';
+import { EditPsychologistRequestDto } from "../application/dtos/request/edit-psychologist-request.dto";
 
 @ApiBearerAuth()
 @ApiTags('Psychologist')
@@ -52,4 +53,17 @@ export class PsychologistsController {
       return ApiController.serverError(response, error);
     }
   }
+
+  @Put(':id')
+  @ApiOperation({ summary: 'Update psychologist'})
+  updatePsychologist(@Param('id', ParseIntPipe) id: number, @Body() editPsychologistRequestDto: EditPsychologistRequestDto){
+    return this.psychologistsApplicationService.update(+id, editPsychologistRequestDto);
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete psychologist'})
+  remove(@Param('id') id: number){
+    return this.psychologistsApplicationService.remove(+id);
+  }
+
 }

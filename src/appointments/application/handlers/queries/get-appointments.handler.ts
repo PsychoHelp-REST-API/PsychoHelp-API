@@ -39,6 +39,7 @@ export class GetAppointmentsHandler implements IQueryHandler<GetAppointmentQuery
       appointmentDto.reasonConsultation = ormAppointment.reasonConsultation;
       return appointmentDto;
     });
+    console.log(apppointments.length);
     return apppointments;
   }
 }

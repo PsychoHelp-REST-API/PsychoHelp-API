@@ -1,11 +1,11 @@
 import { Appointment } from "../../domain/entities/appointment.entity";
 import { AppointmentTypeORM } from "../../infrastructure/persistence/typeorm/entities/appointment.typeorm";
-import { PatientIdTypeORM } from "../../../patients/infrastructure/persistence/typeorm/entities/patient.id.typeorm";
-import { PsychologistIdTypeORM } from "../../../psychologists/infrastructure/persistence/typeorm/entities/psychologist.id.typeorm";
-import { ReasonConsultationTypeORM } from "../../infrastructure/persistence/typeorm/entities/reason-consultation.typeorm";
-import { DateTypeORM } from "../../infrastructure/persistence/typeorm/entities/date.typeorm";
-import { PatientIdFromTypeorm } from "../../infrastructure/persistence/typeorm/entities/patient-id-from.typeorm";
-import { PsychologistIdToTypeORM } from "../../infrastructure/persistence/typeorm/entities/psychologist-id-to.typeorm";
+import { PatientIdTypeORM } from "../../../patients/infrastructure/persistence/typeorm/value-objects/patient.id.typeorm";
+import { PsychologistIdTypeORM } from "../../../psychologists/infrastructure/persistence/typeorm/value-objects/psychologist.id.typeorm";
+import { ReasonConsultationTypeORM } from "../../infrastructure/persistence/typeorm/value-objects/reason-consultation.typeorm";
+import { DateTypeORM } from "../../infrastructure/persistence/typeorm/value-objects/date.typeorm";
+import { PatientIdFromTypeorm } from "../../infrastructure/persistence/typeorm/value-objects/patient-id-from.typeorm";
+import { PsychologistIdToTypeORM } from "../../infrastructure/persistence/typeorm/value-objects/psychologist-id-to.typeorm";
 
 export class AppointmentMapper {
   public static toTypeORM(appointment: Appointment): AppointmentTypeORM {

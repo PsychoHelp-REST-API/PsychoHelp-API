@@ -5,7 +5,7 @@ import { CodeTypeORM } from "../../infrastructure/persistence/typeorm/value-obje
 import { DescriptionTypeORM } from "../../infrastructure/persistence/typeorm/value-objects/description.typeorm";
 import { AmountTypeORM } from "../../infrastructure/persistence/typeorm/value-objects/amount.typeorm";
 import { DateTypeORM } from "../../infrastructure/persistence/typeorm/value-objects/date.typeorm";
-import { PatientIdTypeORM } from "../../../patients/infrastructure/persistence/typeorm/entities/patient.id.typeorm";
+import { PatientIdTypeORM } from "../../../patients/infrastructure/persistence/typeorm/value-objects/patient.id.typeorm";
 
 export class BillingMapper {
   public static toTypeORM(billing: Billing): BillingTypeORM {
