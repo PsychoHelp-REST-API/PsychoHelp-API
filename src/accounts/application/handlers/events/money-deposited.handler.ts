@@ -56,7 +56,12 @@ export class MoneyDepositedHandler
     accountTypeORM = AccountMapper.toTypeORM(account);
     await getManager().transaction(async (paymentEntityManager) => {
       //await paymentEntityManager.save(accountTypeORM);
-      accountTypeORM = await this.accountRepository.save(accountTypeORM);
+      //accountTypeORM = await this.accountRepository.save(accountTypeORM);
+      const updateResult = await this.accountRepository.update(accountTypeORM.id,accountTypeORM)
+      if (updateResult == null) {
+        console.log('MoneyDeposited error');
+        return;
+      }
       if(accountTypeORM == null){
         console.log('MoneyDeposited error');
         return;

@@ -6,6 +6,7 @@ import { Money } from "../../../common/domain/value-objects/money.value";
 import { MoneyDeposited } from "../events/money-deposited.event";
 
 
+
 export class Payment extends AggregateRoot {
   private id: PaymentId;
   private readonly status: PaymentStatus;

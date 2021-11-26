@@ -26,6 +26,7 @@ export class DepositMoneyHandler
   }
 
   async execute(command: DepositMoney){
+
     let paymentId: number = 0;
     const accountNumber: string = command.accountNumber.trim();
     const accountTypeORM: AccountTypeORM = await this.accountRepository

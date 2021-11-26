@@ -8,9 +8,10 @@ import { OpenAccountValidator } from "./application/validators/open-account.vali
 import { OpenAccountHandler } from "./application/handlers/commands/open-account.handler";
 import { AccountOpenedHandler } from "./application/handlers/events/account-opened.handler";
 import { GetAccountsHandler } from "./application/handlers/queries/get-accounts.handler";
+import { MoneyDepositedHandler } from "./application/handlers/events/money-deposited.handler";
 
 export const CommandHandlers = [OpenAccountHandler];
-export const EventHandlers = [AccountOpenedHandler];
+export const EventHandlers = [AccountOpenedHandler, MoneyDepositedHandler];
 export const QueryHandlers = [GetAccountsHandler];
 
 @Module({
