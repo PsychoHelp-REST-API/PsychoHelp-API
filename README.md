@@ -11,7 +11,6 @@ $ npm run start:dev
 $ npm install
 $ npm run build
 $ npm run typeorm:win migration:generate -- -n InitialSchema
-$ npm run typeorm:win migration:create -- -n UbigeoPeru
 $ npm run start:dev
 ```
 
@@ -21,7 +20,6 @@ $ npm run start:dev
 $ npm install
 $ npm run build
 $ npm run typeorm migration:generate -- -n InitialSchema
-$ npm run typeorm migration:create -- -n UbigeoPeru
 $ npm run start:dev
 ```
 
